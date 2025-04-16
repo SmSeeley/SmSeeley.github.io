@@ -1,6 +1,22 @@
-# HTML Starter Website
+# Personal Portfolio Website
 
-## What is this?
+Welcome to my Personal Website! This site showcases who I am, my background, interests, and some projects I’ve worked on. Built with HTML and CSS, it also includes links to my GitHub projects.
 
-This is an extremely basic website using HTML and CSS.
-It is intended to be used as a "starter" website for students that are just starting out with learning HTML and CSS to create a website.
+---
+
+## Overview
+
+### 🏠 Home (`index.html`)
+- Animated bubble background
+- Welcoming message with navigation buttons
+- Quick access to About and Projects pages
+
+### 👤 About Me (`about.html`)
+- Description of my background, experience, and interests
+- Styled text with bullet points
+- Corner photos
+- Autoplaying background video
+
+### 💻 Projects (`projects.html`)
+- Descriptions of GitHub projects
+- Direct GitHub links
