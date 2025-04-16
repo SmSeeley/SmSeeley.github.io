@@ -1,20 +1,414 @@
-.header {
-    color: red;
+/* default margin and padding, and uses border-box for consistenecy */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.subheader {
-    color: blue;
+/* Style for the body of the page except about page */
+body
+{
+    background: #0c192c;
+    font-family: sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Main container holdings the bubble background */
+.container
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /*hides overflowing circles */
+}
+
+/* Flex container for the bubbles */
+.bubbles
+{
+    position: relative;
+    display: flex; /* places the bubble elements in a row */
+}
+
+/* Individual bubble styles*/
+.bubbles span
+{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: cyan; /* default bubble color */
+    margin: 0 4px;      /* space in between bubbles */
+    border-radius: 50%;  /* makes them circles */
+
+    /* glowing effect */
+    box-shadow: 0 0 0 10px #4fc3dc44,
+    0 0 50px cyan,
+    0 0 100px cyan;
+    animation: animate 15s linear infinite; /* makes the bubbles apear rising */
+    animation-duration: calc(110s / var(--i)); /* adjusts speed */
+}
+
+/* Style for even-numbered (every 2nd bubble will be magenta) */
+.bubbles span:nth-child(even)
+{
+    background: magenta;
+    box-shadow: 0 0 0 10px purple,
+    0 0 50px magenta,
+    0 0 100px magenta;
+}
+
+/* Keyframe animation for the rising bubbles */
+@keyframes animate
+{
+    0%
+    {
+        transform: translateY(100vh) scale(0); /*Starts at bottom, small */
+    }
+    100%
+    {
+        transform: translateY(-10vh) scale(1); /* floats to top */
+    }
+}
+
+
+/*Welcome Section */
+
+/* Welcome page text styles */
+.welcome-text {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    color: white;
+    animation: fadeIn 2s ease-in-out forwards;
+    max-width: 700px; 
+    padding: 20px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInMoveUp 1.5s ease-out forwards; /* animation below */
+
+}
+
+/* use keyframes for the fadeinmoveup animation */
+@keyframes fadeInMoveUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Welcome page heading */
+.welcome-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    animation: slideUp 1.5s ease-in-out forwards;
+}
+
+/* Welcome sub-text */
+.welcome-text p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+    animation: slideUp 1.5s ease-in-out 0.5s forwards;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    animation: fadeIn 1.5s ease-in-out 1s forwards;
+    opacity: 0;
+}
+
+/* button group layout for the about me button and projects button */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+/* hover effect buttons */
+.btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* fade and slideUp animations */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Make buttons animate in a bit later */
+.button-group .btn {
+    animation: fadeIn 1.5s ease-in-out 1.2s forwards;
+}
+
+
+
+
+/* Style specific for the about page */
+
+.about-page {
+    background: #0c192c;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 50px;
+    color: #222;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Container for text */
+.about-container {
+    max-width: 750px;
+    margin: 300px auto 80px auto;  /* vertically centered */
+    background: white;
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    text-align: center; /* centers the text */
+}
+
+/* Intro paragraph style */
+.about-intro {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Bullet points list */
+.about-points {
+    text-align: left;
+    padding-left: 0;
+    list-style-position: inside;
+    margin: 0 auto 30px auto;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* used for the bullet point facts */
+.about-points li {
+    margin-bottom: 12px;
+}
+
+/* Closing paragraph message */
+.about-note {
     font-style: italic;
+    color: #555;
+    font-size: 1rem;
 }
 
+
+/* Corner photo styles */
+.corner-photo {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    opacity: 0.95;
+}
+
+/* top left image syling */
+.top-left {
+    top: 100px;
+    left: 50px;
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    opacity: 0.95;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* top left hover */
+.top-left:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* bottom right image styling */
+.bottom-right {
+    bottom: 50px;
+    right: 50px;
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    opacity: 0.95;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* bottom right hover effect */
+.bottom-right:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Top-right image */
+.top-right {
+    top: 100px;
+    right: 50px;
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    opacity: 0.95;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Top-right hover effect */
+.top-right:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* NavBar Styles */
 .navbar {
-    background: black;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    width: 100%;
+    background-color: #0c192c;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.nav-option {
-    color: rgb(50, 238, 50);
-    margin-right: 5px;
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+/* Navbar hover effect */
+.navbar ul li a:hover {
+    color: #4fc3dc; /* nice bright hover color */
+}
+
+/* Push content below the fixed navbar */
+.about-container {
+    margin-top: 80px; /* offset so content doesn't hide under navbar */
+}
+
+
+/* Corner video styling */
+.corner-video {
+    position: absolute;
+    width: 220px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    opacity: 0.9;
+    object-fit: cover;
+}
+
+/* used for corner video */
+.bottom-left {
+    bottom: 50px;
+    left: 50px;
+}
+
+
+/* Projects Page Styling */
+.projects-page {
+    background: #0c192c;
+    font-family: 'Segoe UI', sans-serif;
+    color: #222;
+    min-height: 100vh;
+    padding: 50px;
+    position: relative;
+}
+
+/* main container for projects page */
+.projects-container {
+    max-width: 750px;
+    margin: 100px auto 80px auto; /* Centered like about page */
+    background: white;
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1;
+}
+
+.projects-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+/* project entry sections can be used to add more entries in the future */
+.project-entry {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.project-entry h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #0c192c;
+}
+
+.project-entry p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.project-entry a {
+    display: inline-block;
+    color: #4fc3dc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* hover effect */
+.project-entry a:hover {
+    text-decoration: underline;
 }

@@ -1,16 +1,47 @@
-<html>
-    <head>
-        <title>About Page</title>
-        <link type="text/css" href="example.css" rel="stylesheet"/>
-    </head>
 
-    <body>
-        <div class="navbar">
-            <a class="nav-option" href="index.html">Home</a>
-            <a class="nav-option" href="about.html">About</a>
-        </div>
-        <h1 class="header">Example Webpage</h1>
-        <h2 class="subheader">What is this?</h2>
-        <p>This is an example webpage designed to be used as a template</p>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <!--Link to css file -->
+    <link rel="stylesheet" href="example.css">
+</head>
+
+<body class="about-page">
+    <!---Navigation bar-->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Photos placed in corners -->
+    <img src="images/selfie.jpg" alt="Photo of me" class="corner-photo top-left">
+    <img src="images/ice climbers.jpg" alt="pokemon" class="corner-photo top-right">
+    <img src="images/doggo.jpg" alt="My pet" class="corner-photo bottom-right">
+
+    <!-- Bottom-left video -->
+    <video class="corner-video bottom-left" autoplay loop muted playsinline>
+        <source src="images/vid.mp4" type="video/mp4">
+        Your browser does not support the video tag. <!-- if it doesnt load will display -->
+    </video>
+    
+        <div class="about-container">
+            <h1>About Me</h1>
+            <p class="about-intro">
+                I'm currently a Junior at Quinnipiac studying Computer Science. I first got into CS in highschool when I took a beginner coding class and loved the idea of solving puzzles using code, right then I knew that it was the path for me.
+            </p>
+            
+            <ul class="about-points">
+                <li><strong>Why CS:</strong> I love bringing ideas to life through code, specifically with UI and UX design, my goal is to be a Frontend Developer one day.</li>
+                <li><strong>Experience In:</strong> Java, Python, Javascript, Typescript, React, CSS, HTML, Tailwind CSS, Node.Js.</li>
+                <li><strong>Passions:</strong> Frontend Design, Fashion, and Music.</li>
+                <li><strong>Fun Facts:</strong> Huge TV girl, and Paramore Fan🎧, Coaching and competing in Super Smash Bros. Ultimate (Ranked #6 in CT and currently the best Ice Climbers Main in the U.S).</li>
+            </ul>
+            
+            <p class="about-note">
+                I'm always willing to learn and increase my skills as a Developer — and I’m excited to keep growing in tech.
+            </p>
+
+</body>
