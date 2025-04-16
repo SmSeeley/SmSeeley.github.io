@@ -6,17 +6,27 @@ Welcome to my Personal Website! This site showcases who I am, my background, int
 
 ## Overview
 
-### 🏠 Home (`index.html`)
+### Home (`index.html`)
 - Animated bubble background
 - Welcoming message with navigation buttons
 - Quick access to About and Projects pages
 
-### 👤 About Me (`about.html`)
+###  About Me (`about.html`)
 - Description of my background, experience, and interests
 - Styled text with bullet points
 - Corner photos
 - Autoplaying background video
 
-### 💻 Projects (`projects.html`)
+###  Projects (`projects.html`)
 - Descriptions of GitHub projects
 - Direct GitHub links
+
+## Tech Stack
+- HTML
+- CSS
+- Github
+
+
+## Live Site
+
+- https://smseeley.github.io/
