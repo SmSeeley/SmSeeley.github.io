@@ -1,78 +1,87 @@
-/* default margin and padding, and uses border-box for consistenecy */
-*
-{
+/* default margin and padding, and uses border-box for consistency */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Style for the body of the page except about page */
-body
-{
+/* FIX: prevent tiny overflow from causing scrollbar flicker */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Style for the body */
+body {
     background: #0c192c;
     font-family: sans-serif;
     margin: 0;
     min-height: 100vh;
 }
 
-/* Main container holdings the bubble background */
-.container
-{
-    position: relative;
+/* =========================
+   Bubble Background (FIXED)
+   ========================= */
+
+/* Main container holding the bubble background */
+.container {
+    position: fixed;        /* do not take up layout space */
+    inset: 0;               /* fill the whole screen */
     width: 100%;
-    height: 100vh;
-    overflow: hidden; /*hides overflowing circles */
+    height: 100%;
+    overflow: hidden;       /* hide bubbles outside view */
+    z-index: 0;             /* behind page content */
+    pointer-events: none;   /* FIX: bubbles never block clicks */
 }
 
-/* Flex container for the bubbles */
-.bubbles
-{
-    position: relative;
-    display: flex; /* places the bubble elements in a row */
+/* Container for bubble spans */
+.bubbles {
+    position: absolute;
+    inset: 0;
+    display: flex;
 }
 
-/* Individual bubble styles*/
-.bubbles span
-{
+/* Individual bubble styles */
+.bubbles span {
     position: relative;
     width: 30px;
     height: 30px;
-    background: cyan; /* default bubble color */
-    margin: 0 4px;      /* space in between bubbles */
-    border-radius: 50%;  /* makes them circles */
+    background: cyan;
+    margin: 0 4px;
+    border-radius: 50%;
 
     /* glowing effect */
-    box-shadow: 0 0 0 10px #4fc3dc44,
-    0 0 50px cyan,
-    0 0 100px cyan;
-    animation: animate 15s linear infinite; /* makes the bubbles apear rising */
-    animation-duration: calc(110s / var(--i)); /* adjusts speed */
+    box-shadow:
+        0 0 0 10px #4fc3dc44,
+        0 0 50px cyan,
+        0 0 100px cyan;
+
+    animation: animate 15s linear infinite;
+    animation-duration: calc(110s / var(--i));
 }
 
-/* Style for even-numbered (every 2nd bubble will be magenta) */
-.bubbles span:nth-child(even)
-{
+/* even-numbered bubbles magenta */
+.bubbles span:nth-child(even) {
     background: magenta;
-    box-shadow: 0 0 0 10px purple,
-    0 0 50px magenta,
-    0 0 100px magenta;
+    box-shadow:
+        0 0 0 10px purple,
+        0 0 50px magenta,
+        0 0 100px magenta;
 }
 
-/* Keyframe animation for the rising bubbles */
-@keyframes animate
-{
-    0%
-    {
-        transform: translateY(100vh) scale(0); /*Starts at bottom, small */
+/* rising bubbles animation */
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
     }
-    100%
-    {
-        transform: translateY(-10vh) scale(1); /* floats to top */
+    100% {
+        transform: translateY(-10vh) scale(1);
     }
 }
 
-
-/*Welcome Section */
+/* =========================
+   Welcome Section (Home)
+   ========================= */
 
 /* Welcome page text styles */
 .welcome-text {
@@ -80,19 +89,18 @@ body
     top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 2; /* above bubbles */
     text-align: center;
     color: white;
-    animation: fadeIn 2s ease-in-out forwards;
-    max-width: 700px; 
+    max-width: 700px;
     padding: 20px;
     line-height: 1.6;
-    opacity: 0;
-    animation: fadeInMoveUp 1.5s ease-out forwards; /* animation below */
 
+    opacity: 0;
+    animation: fadeInMoveUp 1.5s ease-out forwards;
 }
 
-/* use keyframes for the fadeinmoveup animation */
+/* fade in + move up */
 @keyframes fadeInMoveUp {
     from {
         opacity: 0;
@@ -104,7 +112,6 @@ body
     }
 }
 
-/* Welcome page heading */
 .welcome-text h1 {
     font-size: 3.5rem;
     margin-bottom: 20px;
@@ -114,7 +121,6 @@ body
     animation: slideUp 1.5s ease-in-out forwards;
 }
 
-/* Welcome sub-text */
 .welcome-text p {
     font-size: 1.4rem;
     font-weight: 400;
@@ -123,6 +129,16 @@ body
     animation: slideUp 1.5s ease-in-out 0.5s forwards;
 }
 
+/* button group layout */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+/* buttons */
 .btn {
     padding: 12px 25px;
     background: transparent;
@@ -132,25 +148,18 @@ body
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
-    animation: fadeIn 1.5s ease-in-out 1s forwards;
+
     opacity: 0;
+    animation: fadeIn 1.5s ease-in-out 1s forwards;
+    position: relative;
+    z-index: 2; /* ensure clickable above anything */
 }
 
-/* button group layout for the about me button and projects button */
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-/* hover effect buttons */
 .btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* fade and slideUp animations */
+/* fade + slide up animations */
 @keyframes fadeIn {
     to { opacity: 1; }
 }
@@ -165,10 +174,9 @@ body
     animation: fadeIn 1.5s ease-in-out 1.2s forwards;
 }
 
-
-
-
-/* Style specific for the about page */
+/* =========================
+   About Page Styling
+   ========================= */
 
 .about-page {
     background: #0c192c;
@@ -179,17 +187,17 @@ body
     min-height: 100vh;
 }
 
-/* Container for text */
+/* Container for about text */
 .about-container {
     max-width: 750px;
-    margin: 300px auto 80px auto;  /* vertically centered */
+    margin: 300px auto 80px auto;
     background: white;
     padding: 50px 40px;
     border-radius: 16px;
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
     position: relative;
-    z-index: 1;
-    text-align: center; /* centers the text */
+    z-index: 2; /* above bubbles */
+    text-align: center;
 }
 
 /* Intro paragraph style */
@@ -210,7 +218,6 @@ body
     line-height: 1.8;
 }
 
-/* used for the bullet point facts */
 .about-points li {
     margin-bottom: 12px;
 }
@@ -221,7 +228,6 @@ body
     color: #555;
     font-size: 1rem;
 }
-
 
 /* Corner photo styles */
 .corner-photo {
@@ -234,12 +240,12 @@ body
     opacity: 0.95;
 }
 
-/* top left image syling */
+/* top left image styling */
 .top-left {
     top: 100px;
-    left: 50px;
+    left: 85px;
     position: absolute;
-    width: 200px;
+    width: 250px;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -248,7 +254,6 @@ body
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* top left hover */
 .top-left:hover {
     transform: scale(1.05);
     opacity: 1;
@@ -259,7 +264,7 @@ body
     bottom: 50px;
     right: 50px;
     position: absolute;
-    width: 200px;
+    width: 350px;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -268,7 +273,6 @@ body
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* bottom right hover effect */
 .bottom-right:hover {
     transform: scale(1.05);
     opacity: 1;
@@ -279,7 +283,7 @@ body
     top: 100px;
     right: 50px;
     position: absolute;
-    width: 200px;
+    width: 350px;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
@@ -288,13 +292,15 @@ body
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Top-right hover effect */
 .top-right:hover {
     transform: scale(1.05);
     opacity: 1;
 }
 
-/* NavBar Styles */
+/* =========================
+   NavBar Styles
+   ========================= */
+
 .navbar {
     width: 100%;
     background-color: #0c192c;
@@ -328,16 +334,18 @@ body
 
 /* Navbar hover effect */
 .navbar ul li a:hover {
-    color: #4fc3dc; /* nice bright hover color */
+    color: #4fc3dc;
 }
 
-/* Push content below the fixed navbar */
+/* Push content below the fixed navbar (about) */
 .about-container {
-    margin-top: 80px; /* offset so content doesn't hide under navbar */
+    margin-top: 80px;
 }
 
+/* =========================
+   Corner video styling
+   ========================= */
 
-/* Corner video styling */
 .corner-video {
     position: absolute;
     width: 220px;
@@ -349,14 +357,15 @@ body
     object-fit: cover;
 }
 
-/* used for corner video */
 .bottom-left {
     bottom: 50px;
-    left: 50px;
+    left: 100px;
 }
 
+/* =========================
+   Projects Page Styling
+   ========================= */
 
-/* Projects Page Styling */
 .projects-page {
     background: #0c192c;
     font-family: 'Segoe UI', sans-serif;
@@ -369,13 +378,14 @@ body
 /* main container for projects page */
 .projects-container {
     max-width: 750px;
-    margin: 100px auto 80px auto; /* Centered like about page */
+    margin: 100px auto 80px auto;
     background: white;
     padding: 50px 40px;
     border-radius: 16px;
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
     text-align: center;
-    z-index: 1;
+    position: relative;
+    z-index: 2; /* above bubbles */
 }
 
 .projects-container h1 {
@@ -383,7 +393,7 @@ body
     margin-bottom: 30px;
 }
 
-/* project entry sections can be used to add more entries in the future */
+/* project entry sections */
 .project-entry {
     margin-bottom: 40px;
     text-align: left;
@@ -401,14 +411,15 @@ body
     margin-bottom: 10px;
 }
 
+/* FIX: stable hover underline (no layout shift) */
 .project-entry a {
     display: inline-block;
     color: #4fc3dc;
-    text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid transparent; /* no shift */
 }
 
-/* hover effect */
 .project-entry a:hover {
-    text-decoration: underline;
+    border-bottom-color: currentColor;
 }

@@ -1,35 +1,99 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>My Projects</title>
-    <!-- Link to css file -->
-    <link rel="stylesheet" href="example.css">
+    <link rel="stylesheet" href="example.css" />
 </head>
 
-<body class="projects-page">
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-        </ul>
-    </nav>
+<body class="projects-page" style="overflow-y: scroll; overflow-x: hidden;">
 
-    <!-- Main Projects Box -->
-    <div class="projects-container">
-        <h1>My Projects</h1>
-
-        <div class="project-entry">
-            <h2>RPG Pixel Art Style Game</h2>
-            <p> A Java-based RPG game with pixel art styling, where you battle enemies and solve riddles. This project features a map with several rooms, collision detection, combat system, music, and much more. </p>
-            <a href="https://github.com/SmSeeley/Sada-s-Nightmare" target="_blank">View on GitHub</a> <!-- Use target= "_blank" so it opens in a new browser tab"-->
-        </div>
-
-        <div class="project-entry">
-            <h2>Snake Game Application</h2>
-            <p>A Java Based Snake Game application. This project features a grid-based game board, keyboard controls for movement, collision detection, score tracking, and increasing difficulty as the snake grows!</p>
-            <a href="https://github.com/LucasJenkins731/Snake" target="_blank">View on GitHub</a>
+    <!-- Bubble Background -->
+    <div class="bubble-bg" aria-hidden="true">
+        <div class="bubbles">
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:29;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:28;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:29;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:28;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:28;"></span>
         </div>
     </div>
+
+    <!-- Content layer -->
+    <div class="page-content">
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+        </nav>
+
+        <div class="projects-container">
+            <h1>My Projects</h1>
+
+            <div class="project-entry">
+                <h2>RPG Pixel Art Style Game</h2>
+                <p>
+                    A Java-based RPG game with pixel art styling, where you battle enemies and solve riddles.
+                    This project features a map with several rooms, collision detection, combat system, music, and much more.
+                </p>
+                <a href="https://github.com/SmSeeley/Sada-s-Nightmare" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+            </div>
+
+            <div class="project-entry">
+                <h2>Snake Game Application</h2>
+                <p>
+                    A Java Based Snake Game application. This project features a grid-based game board,
+                    keyboard controls for movement, collision detection, score tracking, and increasing difficulty as the snake grows!
+                </p>
+                <a href="https://github.com/LucasJenkins731/Snake" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
 </body>
+</html>
